@@ -11,28 +11,30 @@ const EpisodeList = (props: EpisodeListProps) => {
         {' '}
         {props.items.map((e: TEpisode) => {
           return (
-            <section className={st.card} key={e.id}>
-              <img
-                className={st.screenshot}
-                src={e.image.medium}
-                alt={`Futurama - ${e.name}`}
-              />
-              <div className={st.meta}>
-                <h1 className={st.title}>{e.name}</h1>
-                <h2 className={st.episodeNumber}>{`S${e.season}E${
-                  e.number
-                }`}</h2>
+            <article className={st.card} key={e.id}>
+              <div className={st.innerCard}>
+                <img
+                  className={st.screenshot}
+                  src={e.image.medium}
+                  alt={`Futurama - ${e.name}`}
+                />
+                <div className={st.meta}>
+                  <h1 className={st.title}>{e.name}</h1>
+                  <h2 className={st.episodeNumber}>{`S${e.season}E${
+                    e.number
+                  }`}</h2>
+                </div>
+                <div className={st.like}>
+                  <span
+                    onClick={() => {
+                      props.onFav(e.id)
+                    }}
+                  >
+                    <Heart solid={props.isFav(e.id)} />
+                  </span>
+                </div>
               </div>
-              <div className={st.like}>
-                <span
-                  onClick={() => {
-                    props.onFav(e.id)
-                  }}
-                >
-                  <Heart solid={props.isFav(e.id)} />
-                </span>
-              </div>
-            </section>
+            </article>
           )
         })}
       </section>
@@ -43,21 +45,25 @@ const EpisodeList = (props: EpisodeListProps) => {
 
 const st = {
   card: `
+    pa1
+    w-100
+    w-50-m
+    w-25-ns
+    mb2
+`,
+  innerCard: `
     flex
     flex-wrap
     pa2
-    w-100
-    mh1
-    mb4
-    b--light-gray
     ba
+    b--light-gray
     shadow-hover
-`,
+  `,
   episodeList: `
     flex
     flex-wrap
-    pa3 
-    center
+    w-100
+    pa3
   `,
   screenshot: `
     w-100
