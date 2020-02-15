@@ -40,11 +40,11 @@ const App = () => {
     })
   }
 
-  const onFavFilterClick = (e: MouseEvent) => {
+  const onFavFilterClick = (_: MouseEvent) => {
     setShowFavs(prev => !prev)
   }
 
-  const onUnfavFilterClick = (e: MouseEvent) => {
+  const onUnfavFilterClick = (_: MouseEvent) => {
     setShowUnfavs(prev => !prev)
   }
 

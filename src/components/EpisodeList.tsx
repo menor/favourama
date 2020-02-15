@@ -13,11 +13,12 @@ const EpisodeList = (props: EpisodeListProps) => {
           return (
             <article className={st.card} key={e.id}>
               <div className={st.innerCard}>
+                <div className='w-100 aspect-ratio aspect-ratio--16x9 bg-light-gray black-50'>
                 <img
-                  className={st.screenshot}
+                  className='aspect-ratio--object'
                   src={e.image.medium}
                   alt={`Futurama - ${e.name}`}
-                />
+                /></div>
                 <div className={st.meta}>
                   <h1 className={st.title}>{e.name}</h1>
                   <h2 className={st.episodeNumber}>{`S${e.season}E${
@@ -65,10 +66,6 @@ const st = {
     w-100
     pa3
   `,
-  screenshot: `
-    w-100
-    center
-    `,
   meta: `
     mt2
     w-90
