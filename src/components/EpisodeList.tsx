@@ -1,5 +1,6 @@
 import React from 'react'
 import Heart from './Heart'
+import Screenshot from './Screenshot'
 
 // We need to wrap this list inside a fragment until the issue is solved
 // in definitivleyTyped
@@ -13,12 +14,10 @@ const EpisodeList = (props: EpisodeListProps) => {
           return (
             <article className={st.card} key={e.id}>
               <div className={st.innerCard}>
-                <div className='w-100 aspect-ratio aspect-ratio--16x9 bg-light-gray black-50'>
-                <img
-                  className='aspect-ratio--object'
+                <Screenshot
                   src={e.image.medium}
                   alt={`Futurama - ${e.name}`}
-                /></div>
+                />
                 <div className={st.meta}>
                   <h1 className={st.title}>{e.name}</h1>
                   <h2 className={st.episodeNumber}>{`S${e.season}E${
