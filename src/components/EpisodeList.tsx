@@ -6,7 +6,7 @@ import Screenshot from './Screenshot'
 // in definitivleyTyped
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20356
 const EpisodeList = (props: EpisodeListProps) => {
-  if (props.items) {
+  if (props.items.length > 0) {
     return (
       <section className={st.episodeList}>
         {' '}
@@ -14,10 +14,7 @@ const EpisodeList = (props: EpisodeListProps) => {
           return (
             <article className={st.card} key={e.id}>
               <div className={st.innerCard}>
-                <Screenshot
-                  src={e.image.medium}
-                  alt={`Futurama - ${e.name}`}
-                />
+                <Screenshot src={e.image.medium} alt={`Futurama - ${e.name}`} />
                 <div className={st.meta}>
                   <h1 className={st.title}>{e.name}</h1>
                   <h2 className={st.episodeNumber}>{`S${e.season}E${
@@ -40,7 +37,11 @@ const EpisodeList = (props: EpisodeListProps) => {
       </section>
     )
   }
-  return null
+  return (
+    <section className={st.episodeList}>
+      <p className={st.noEpisodes}>No episodes matching your filter(s)</p>
+    </section>
+  )
 }
 
 const st = {
@@ -84,6 +85,12 @@ const st = {
    mt3
    flex
    items-end
+  `,
+  noEpisodes: `
+    center
+    f3
+    pt6
+    silver
   `
 }
 

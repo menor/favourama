@@ -1,10 +1,5 @@
 import React from 'react'
 
-// TODO next:
-// style and function favs unfavs
-// Improve cards typography
-//
-
 type HeaderProps = {
   favFilterActive: boolean
   unfavFilterActive: boolean
