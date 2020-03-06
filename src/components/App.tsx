@@ -31,7 +31,7 @@ const App = () => {
       return showUnfavouriteEpisodes()
     }
 
-    return episodes
+    return []
   }
 
   const onFav = (fav: number) => {
