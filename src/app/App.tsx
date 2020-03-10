@@ -1,8 +1,8 @@
 import React, { useState, useEffect, MouseEvent } from 'react'
 import { xor } from 'lodash/fp'
-import FuturamaApi from '../apis'
-import Header from './Header'
-import EpisodeList, { TEpisode } from './EpisodeList'
+import FuturamaApi, { TEpisode } from '../api/tvmazeAPI'
+import Header from '../components/Header'
+import EpisodeList from '../features/EpisodeList/EpisodeList'
 
 const App = () => {
   const [episodes, setEpisodes] = useState<TEpisode[] | []>([])
