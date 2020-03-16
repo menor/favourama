@@ -1,6 +1,6 @@
 import ky from 'ky'
 
-export default ky.create({
+const api = ky.create({
   prefixUrl: 'http://api.tvmaze.com/shows/538'
 })
 
@@ -32,3 +32,8 @@ export type TEpisode = {
   _links: EpisodeLink
 }
 
+export type TEpisodesResult = TEpisode[]
+
+export async function getEpisodes(): Promise<TEpisode[]> {
+  return api.get('episodes').json()
+}

@@ -1,7 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-const rootReducer = combineReducers({})
+import episodesReducer from '../features/EpisodesList/episodesSlice' 
 
-export type RootState = ReturnType<typeof rootReducer>
+const rootReducer = combineReducers({
+  episodes: episodesReducer
+})
+
+export type TRootState = ReturnType<typeof rootReducer>
 
 export default rootReducer

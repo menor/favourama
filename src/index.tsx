@@ -7,8 +7,9 @@ import store from './app/store'
 import './index.css'
 
 const render = () => {
-  const App = require('./app/App').default
+  const App = require('./app/App.tsx').default
 
+  console.log('store', store.getState())
   ReactDOM.render(
     <Provider store={store}>
       <App />
@@ -20,7 +21,7 @@ const render = () => {
 render()
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('./app/App', render)
+  module.hot.accept('./app/App.tsx', render)
 }
 
 // If you want your app to work offline and load faster, you can change
