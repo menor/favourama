@@ -1,34 +1,62 @@
 import React from 'react'
-import Heart from '../../components/Heart'
-import Screenshot from '../../components/Screenshot'
+import { useSelector, useDispatch } from 'react-redux'
+import { isEmpty, difference } from 'lodash/fp'
+import { createSelector } from 'reselect'
 
-// We need to wrap this list inside a fragment until the issue is solved
-// in definitivleyTyped
-// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20356
-const EpisodesListPage = (props: EpisodeListProps) => {
-  if (props.items.length > 0) {
-    return (
-      <section className={st.episodeList}>
-        {' '}
-        {props.items.map((e: TEpisode) => {
-          return (
-            <article className={st.card} key={e.id}>
-              <div className={st.innerCard}>
-                <Screenshot src={e.image.medium} alt={`Futurama - ${e.name}`} />
-                <div className={st.meta}>
-                  <h1 className={st.title}>{e.name}</h1>
-                  <h2 className={st.episodeNumber}>{`S${e.season}E${
-                    e.number
-                  }`}</h2>
-                </div>
-                <div className={st.like}>
-                </div>
-              </div>
-            </article>
-          )
-        })}
-      </section>
-    )
+import { TRootState } from '../../app/rootReducer'
+import { toggleFav } from '../FavouriteEpisodes/favouriteEpisodesSlice'
+
+import EpisodesList from './EpisodesList'
+
+// TEMP: selector
+const getEpisodes = (state: TRootState) => state.episodes.episodesById
+const getEpisodesIds = (state: TRootState) =>
+  Object.keys(state.episodes.episodesById).map(id => parseInt(id, 10))
+const getFavourites = (state: TRootState) => {
+  return state.favouriteEpisodes.favouriteEpisodes
+}
+const getDisplayFilters = (state: TRootState) => state.displayFilters
+
+const getVisibleEpisodes = createSelector(
+  [getEpisodes, getEpisodesIds, getFavourites, getDisplayFilters],
+  (episodes, episodesIds, favouritesIds, { showFavs, showUnfavs }) => {
+    if (isEmpty(episodesIds)) {
+      return []
+    }
+    if (!showUnfavs && !showFavs) {
+      return []
+    }
+    if (!showUnfavs && showFavs) {
+      return favouritesIds.map(favouriteId => episodes[favouriteId])
+    }
+    if (showUnfavs && !showFavs) {
+      return difference(episodesIds, favouritesIds).map(id => episodes[id])
+    }
+    return episodesIds.map(id => episodes[id])
+  }
+)
+
+// End selector
+
+const EpisodesListPage = () => {
+  const dispatch = useDispatch()
+
+  const visibleEpisodes = useSelector(getVisibleEpisodes)
+
+  const {
+    favouriteEpisodes: { favouriteEpisodes }
+  } = useSelector((state: TRootState) => {
+    return state
+  })
+
+  const isFav = (id: number) => favouriteEpisodes.includes(id)
+
+  const onFav = (episodeId: string) => {
+    dispatch(toggleFav(parseInt(episodeId, 10)))
+  }
+
+  if (visibleEpisodes.length > 0) {
+    return <EpisodesList items={visibleEpisodes} onFav={onFav} isFav={isFav} />
   }
   return (
     <section className={st.episodeList}>
@@ -101,7 +129,7 @@ type EpisodeLink = {
 }
 
 export type TEpisode = {
-  id: number
+  id: string
   url: string
   name: string
   season: number
@@ -116,10 +144,9 @@ export type TEpisode = {
 }
 
 type EpisodeListProps = {
-  items: Record<number, TEpisode>
+  items: TEpisode[]
   // isFav: Function
-  // onFav: Function
+  onFav: Function
 }
 
 export default EpisodesListPage
-

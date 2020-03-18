@@ -4,7 +4,7 @@ import { TEpisode, TEpisodesResult, getEpisodes } from '../../api/tvmazeAPI'
 import { AppThunk } from '../../app/store'
 
 type TEpisodesState = {
-  episodesById: Record<number, TEpisode>
+  episodesById: Record<string, TEpisode>
   isLoading: boolean
   error: string | null
 }
@@ -55,11 +55,9 @@ export const {
 export default episodes.reducer
 
 export const fetchEpisodes = (): AppThunk => async dispatch => {
-  console.log('fetching')
   try {
     dispatch(getEpisodesStart())
     const episodes = await getEpisodes()
-    console.log('episodes dispatch', episodes)
     dispatch(getEpisodesSuccess(episodes))
   } catch (err) {
     dispatch(getEpisodesFailure(err.toString()))

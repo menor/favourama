@@ -9,7 +9,6 @@ import './index.css'
 const render = () => {
   const App = require('./app/App.tsx').default
 
-  console.log('store', store.getState())
   ReactDOM.render(
     <Provider store={store}>
       <App />
