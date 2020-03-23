@@ -12,6 +12,9 @@ export const displayFiltersSelector = (state: TRootState) =>
 export const episodesSelector = (state: TRootState) =>
   state.episodes.episodesById
 
+export const episodesLoadingSelector = (state: TRootState) =>
+  state.episodes.isLoading
+
 export const episodesIdsSelector = (state: TRootState) =>
   Object.keys(state.episodes.episodesById).map(id => parseInt(id, 10))
 

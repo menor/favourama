@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+// Types
 export type TDisplayFiltersState = {
   showFavs: boolean
   showUnfavs: boolean
 }
 
+// Reducer
 const initialState = {
   showFavs: false,
   showUnfavs: true
@@ -19,6 +21,7 @@ const displayFilters = createSlice({
   }
 })
 
+// Action Handlers
 function showFavsToggled (state: TDisplayFiltersState, _action: PayloadAction) {
   state.showFavs = !state.showFavs
 }
