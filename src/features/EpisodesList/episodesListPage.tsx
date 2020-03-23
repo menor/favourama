@@ -1,55 +1,19 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { isEmpty, difference } from 'lodash/fp'
-import { createSelector } from 'reselect'
 
-import { TRootState } from '../../app/rootReducer'
+import { favouritesSelector, displayableEpisodesSelector } from '../../app/selectors'
+
 import { toggleFav } from '../FavouriteEpisodes/favouriteEpisodesSlice'
 
 import EpisodesList from './EpisodesList'
 
-// TEMP: selector
-const getEpisodes = (state: TRootState) => state.episodes.episodesById
-const getEpisodesIds = (state: TRootState) =>
-  Object.keys(state.episodes.episodesById).map(id => parseInt(id, 10))
-const getFavourites = (state: TRootState) => {
-  return state.favouriteEpisodes.favouriteEpisodes
-}
-const getDisplayFilters = (state: TRootState) => state.displayFilters
-
-const getVisibleEpisodes = createSelector(
-  [getEpisodes, getEpisodesIds, getFavourites, getDisplayFilters],
-  (episodes, episodesIds, favouritesIds, { showFavs, showUnfavs }) => {
-    if (isEmpty(episodesIds)) {
-      return []
-    }
-    if (!showUnfavs && !showFavs) {
-      return []
-    }
-    if (!showUnfavs && showFavs) {
-      return favouritesIds.map(favouriteId => episodes[favouriteId])
-    }
-    if (showUnfavs && !showFavs) {
-      return difference(episodesIds, favouritesIds).map(id => episodes[id])
-    }
-    return episodesIds.map(id => episodes[id])
-  }
-)
-
-// End selector
-
 const EpisodesListPage = () => {
   const dispatch = useDispatch()
 
-  const visibleEpisodes = useSelector(getVisibleEpisodes)
+  const visibleEpisodes = useSelector(displayableEpisodesSelector)
+  const favouriteEpisodesIds = useSelector(favouritesSelector)
 
-  const {
-    favouriteEpisodes: { favouriteEpisodes }
-  } = useSelector((state: TRootState) => {
-    return state
-  })
-
-  const isFav = (id: number) => favouriteEpisodes.includes(id)
+  const isFav = (id: number) => favouriteEpisodesIds.includes(id)
 
   const onFav = (episodeId: string) => {
     dispatch(toggleFav(parseInt(episodeId, 10)))
