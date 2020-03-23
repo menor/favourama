@@ -3,12 +3,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { TEpisode, TEpisodesResult, getEpisodes } from '../../api/tvmazeAPI'
 import { AppThunk } from '../../app/store'
 
+// Types
 type TEpisodesState = {
   episodesById: Record<string, TEpisode>
   isLoading: boolean
   error: string | null
 }
 
+// Reducer
 const initialState: TEpisodesState = {
   episodesById: {},
   isLoading: false,
@@ -25,6 +27,7 @@ const episodes = createSlice({
   }
 })
 
+// Action Handlers
 function loadingStarted(state: TEpisodesState) {
   state.isLoading = true
 }
@@ -46,14 +49,7 @@ function getEpisodesSuccessHandler(
   })
 }
 
-export const {
-  getEpisodesStart,
-  getEpisodesSuccess,
-  getEpisodesFailure
-} = episodes.actions
-
-export default episodes.reducer
-
+// Thunks
 export const fetchEpisodes = (): AppThunk => async dispatch => {
   try {
     dispatch(getEpisodesStart())
@@ -63,3 +59,12 @@ export const fetchEpisodes = (): AppThunk => async dispatch => {
     dispatch(getEpisodesFailure(err.toString()))
   }
 }
+
+export const {
+  getEpisodesStart,
+  getEpisodesSuccess,
+  getEpisodesFailure
+} = episodes.actions
+
+export default episodes.reducer
+

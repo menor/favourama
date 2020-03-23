@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { xor } from 'lodash'
 
+// Types
 type TFavouriteEpisodesState = {
   favouriteEpisodes: number[]
 }
@@ -9,6 +10,7 @@ const initialState: TFavouriteEpisodesState = {
   favouriteEpisodes: []
 }
 
+// Reducer
 const favouriteEpisodes = createSlice({
   name: 'favouriteEpisodes',
   initialState,
@@ -17,6 +19,8 @@ const favouriteEpisodes = createSlice({
   }
 })
 
+
+// Action Handlers
 function favToggled(
   state: TFavouriteEpisodesState,
   action: PayloadAction<number>
