@@ -1,4 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Favourama
+https://menor.github.io/favourama/
+
+This is a simple app that allows you to favourite Futurama episodes, the data is persisted to local storage, so there is no user logins or database.
+
+The purposes of writing this was to:
+- Avoid my frontend skills from getting rusty
+- Explore different ways to write styles
+- Learn how to use typescript on react projects
+- Learn differences between handling the state of a react app using pure react or redux
+ 
+## Styles
+- I used [tachyons css](http://tachyons.io/) for styling with a simple hand made solution to keep the html from having too much noise, I just create the classnames using tem[plate literals that aggregate several of the tachyons classnames. In example instead of this
+```jsx
+<header className='pt3 ph4 pb1 mb1 sans-serif br4 br--bottom'>
+
+```
+
+I do this:
+```jsx
+<header className={styles.header}>
+
+const styles = {
+  header: `
+    pt3
+    ph4
+    pb1
+    mb1
+    sans-serif
+    br4
+    br--bottom
+  `
+}
+
+```
+
+- In some cases I still use the first form if I don't have to add too many classes, this makes iterations fast
+
+## State Management
+- On its main branch this project uses redux via redux-dev-tools
+- The code is organized by feature folders.
+
+- On the pure-react branch the same app is implemented using react without a state management library, just using vanilla react-hooks
+
+## Typescript
+- I was reluctant to use it, I can see some of its advantages helping you detect errors at compile time, but it comes with a learning curve. If you are going to work on a large app with more developers it'd be good to learn it. For smaller projects is nice to have, specially now that the compiler is more mature and the set up for building projects is almost instant.
 
 ## Available Scripts
 
@@ -7,38 +52,11 @@ In the project directory, you can run:
 ### `yarn start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3003](http://localhost:3003) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `yarn deploy`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Builds the app for production to the `build` folder. It then deploys the app to the gh-pages branch of this repo
