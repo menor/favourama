@@ -44,7 +44,8 @@ function getEpisodesSuccessHandler(
   state.isLoading = false
   state.error = null
   payload.forEach(episode => {
-    // TODO: Maybe use S01E01 as id instead of the ID coming from tv maze
+    episode.image.original = episode.image.original.replace(/http:/, '')
+    episode.image.medium = episode.image.medium.replace(/http:/, '')
     state.episodesById[episode.id] = episode
   })
 }

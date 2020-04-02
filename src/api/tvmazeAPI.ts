@@ -1,7 +1,7 @@
 import ky from 'ky'
 
 const api = ky.create({
-  prefixUrl: 'http://api.tvmaze.com/shows/538'
+  prefixUrl: 'https://api.tvmaze.com/shows/538'
 })
 
 type EpisodeImage = {
