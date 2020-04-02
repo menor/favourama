@@ -8,7 +8,7 @@ export type TDisplayFiltersState = {
 
 // Reducer
 const initialState = {
-  showFavs: false,
+  showFavs: true,
   showUnfavs: true
 }
 
