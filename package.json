@@ -2,6 +2,7 @@
   "name": "favourama",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/menor/favourama",
   "dependencies": {
     "ky": "^0.17.0",
     "lodash": "^4.17.15",
