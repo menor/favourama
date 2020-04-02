@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/favourama/static/css/main.4eda9ebe.chunk.css",
-    "main.js": "/favourama/static/js/main.7b7ce7eb.chunk.js",
-    "main.js.map": "/favourama/static/js/main.7b7ce7eb.chunk.js.map",
+    "main.js": "/favourama/static/js/main.6630366e.chunk.js",
+    "main.js.map": "/favourama/static/js/main.6630366e.chunk.js.map",
     "runtime-main.js": "/favourama/static/js/runtime-main.eecf9f57.js",
     "runtime-main.js.map": "/favourama/static/js/runtime-main.eecf9f57.js.map",
     "static/js/2.94038aa4.chunk.js": "/favourama/static/js/2.94038aa4.chunk.js",
     "static/js/2.94038aa4.chunk.js.map": "/favourama/static/js/2.94038aa4.chunk.js.map",
     "index.html": "/favourama/index.html",
-    "precache-manifest.b3d8047da8cf7768c4e20ad0e25356d9.js": "/favourama/precache-manifest.b3d8047da8cf7768c4e20ad0e25356d9.js",
+    "precache-manifest.000f2cb01b78bc61c4829e4115b08873.js": "/favourama/precache-manifest.000f2cb01b78bc61c4829e4115b08873.js",
     "service-worker.js": "/favourama/service-worker.js",
     "static/css/main.4eda9ebe.chunk.css.map": "/favourama/static/css/main.4eda9ebe.chunk.css.map",
     "static/js/2.94038aa4.chunk.js.LICENSE.txt": "/favourama/static/js/2.94038aa4.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.eecf9f57.js",
     "static/js/2.94038aa4.chunk.js",
     "static/css/main.4eda9ebe.chunk.css",
-    "static/js/main.7b7ce7eb.chunk.js"
+    "static/js/main.6630366e.chunk.js"
   ]
 }
